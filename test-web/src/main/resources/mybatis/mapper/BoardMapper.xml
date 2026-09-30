@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.validator.web.mapper.BoardMapper">
+    
+    <sql id="search">
+        <if test="searchKeyword != null and searchKeyword neq ''">
+            and title like '%${search}%'
+        </if>
+    </sql>
+    <insert id="insertBoard" parameterType="com.validator.web.vo.ContentsVo">
+        Insert into post_test
+        SET title = #{title},
+            contents = #{contents}
+    </insert>
+    <insert id="insertFileBoard" parameterType="com.validator.web.vo.FileContentsVo">
+        Insert into file_test
+        SET title = #{title},
+            contents = #{contents},
+            file_name = #{fileName},
+            file_size = #{fileSize},
+            file_ext = #{fileExt}
+    </insert>
+    <select id="selectBoard"
+            parameterType="com.validator.web.vo.SearchVo"
+            resultType="com.validator.web.vo.ContentsVo">
+        select idx, title from post_test
+        where type= ${type}
+        <include refid="search" />
+
+    </select>
+    <select id="selectFileBoard"
+            parameterType="com.validator.web.vo.SearchVo"
+            resultType="com.validator.web.vo.FileContentsVo">
+        select idx, title from file_test
+        where type= ${type}
+        <include refid="search" />
+
+    </select>
+    <select id="selectBoardDetail"
+            parameterType="int"
+            resultType="com.validator.web.vo.ContentsVo">
+        select idx, title, contents from post_test
+        where idx = #{idx}
+    </select>
+</mapper>

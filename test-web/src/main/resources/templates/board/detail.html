@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>detail</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.button').on('click', function() {
+                location.href = '/board';
+            });
+        });
+    </script>
+</head>
+<body>
+    <div>
+
+        <table>
+            <tr>
+                <td>title</td>
+                <td th:text="${detail.title}"></td>
+            </tr>
+            <tr>
+                <td>contents</td>
+                <td th:text="${detail.contents}"></td>
+            </tr>
+        </table>
+    </div>
+    <div><button class="button">리스트로</button></div>
+</body>
+</html>

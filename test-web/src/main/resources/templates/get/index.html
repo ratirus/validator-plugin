@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>get</title>
+    <script src="/js/jquery-1.12.3.min.js"></script>
+    <script src="/js/validator.util.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.10.2/underscore-min.js"></script>
+</head>
+<body>
+   <a href="javascript:valink('/get_result?param1=1&param2=test&param3=한글')">link</a> <br>
+   <select name="sel1" id="selID1" onchange="javascript:valink(this.value)">
+    <option value="">select</option>
+    <option value="/get_result?param1=2&param2=test2&param3=한글2">option1</option>
+    <option value="/get_result?param1=3&param2=test3&param3=한글3">option2</option>
+    <option value="/get_result?param1=4&param2=test4&param3=한글4">option3</option>
+    <option value="/get_result?param1=4&param2=alert(document.cookie)&param3=한글4">attack</option>
+   </select>
+</body>
+</html>

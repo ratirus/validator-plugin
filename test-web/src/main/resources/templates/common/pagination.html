@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
+
+	<th:block th:fragment="pagination-fragment (pageable, currentPage)" th:if="${pageable.pages > 0}">
+		<div class="pagination">
+			<button class="page__control page--first" type="button"
+			        th:classappend="${!pageable.isFirstPage} ? 'is-active'"
+			        value="1"></button>
+			<button class="page__control page--prev" type="button"
+			        th:classappend="${pageable.hasPreviousPage} ? 'is-active'"
+			        th:value="${pageable.prePage}"></button>
+
+			<ol class="page__list">
+				<li class="page__item" th:each="pageNum : ${pageable.navigatepageNums}"
+				                       th:classappend="${currentPage == pageNum} ? 'is-active'">
+					<a th:href="${pageNum}" th:text="${pageNum}"></a>
+				</li>
+			</ol>
+
+			<button class="page__control page--next" type="button"
+			        th:classappend="${pageable.hasNextPage} ? 'is-active'"
+			        th:value="${pageable.nextPage}"></button>
+			<button class="page__control page--last" type="button"
+			        th:classappend="${!pageable.isLastPage} ? 'is-active'"
+			        th:value="${pageable.pages}"></button>
+		</div>
+	</th:block>
+
+</html>

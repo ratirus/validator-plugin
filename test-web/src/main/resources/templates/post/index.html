@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>post</title>
+    <script>
+        function submit(){
+            var form = $("#frm")[0];
+            form.submit();
+        }
+    </script>
+</head>
+<body>
+    <form action="/post_result" id="frm" method="post">
+    <table>
+        <tr>
+            <td>title</td>
+            <td><input type="text" name="title" id="title"></td>
+        </tr>
+        <tr>
+            <td>contents</td>
+            <td><textarea name="content" id="content"></textarea></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="button" value="submit"></td>
+        </tr>
+    </table> 
+    </form>
+</body>
+</html>

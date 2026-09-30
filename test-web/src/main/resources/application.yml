@@ -1,0 +1,76 @@
+spring:
+  application:
+    name: 'test-web'
+  datasource:
+    default:
+      hikari:
+        pool-name: DEFAULT
+        driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+        jdbc-url: jdbc:log4jdbc:mysql://127.0.0.1:3306/vdb
+        username: root
+        password: mariadb$24
+        maximum-pool-size: 50
+        minimum-idle: 3
+        auto-commit: true
+        connection-timeout: 20000
+        idle-timeout: 30000
+        max-lifetime: 600000
+        data-source-properties:
+          cachePrepStmts: true
+          prepStmtCacheSize: 250
+          prepStmtCacheSqlLimit: 2048
+          useServerPrepStmts: true
+  servlet:
+    multipart:
+      location: /temp/upload/
+server:
+  port: 8082
+  ssl:
+    enabled: true
+    # p12 설정
+    key-store: "/Users/ratirus/work/sslpem/aws_keystore.p12" #key.p12
+    key-store-password: validator$ai
+    key-store-type: PKCS12
+  error:
+    path: /error
+    whitelabel:
+      enabled: false
+
+demo:
+  storage:
+    location: upload
+
+validator:
+  license-key: 2abc-D0fh-092v-07a5
+  hash:
+    algorithm: HmacSHA512
+    saltKey: validator$imsi#2025
+  encryption:
+    algorithm: AES/CTR/NoPadding
+    saltKey: cc0863ef8feff4190bb38c89881d58c99ca41b3e8ba84a164dffe84bb653b437
+  limit-timer:
+    enabled: false
+    interval: 10 #10 seconds
+  host:
+    api: https://ad.validator-ai.co.kr:8888
+    admin: admin.validator-ai.co.kr:8800
+    user: demo.validator-ai.co.kr:8443
+    validator-ai: admin.validator-ai.co.kr:8800
+  jwt:
+    domain-id: admin #domain별 구분자 admin.validator-ai.co.kr -> admin(sub domain사용시)/ www.validator-ai.co.kr:8080 -> 8080(port사용시)
+    secret-key: Validator-AI_Token_key$24
+    access-token-expire-limit: 3 #시간 단위
+    refresh-token-expire-limit: 365
+    name: "_cf_bm" #jwt cookie name으로 유추하기 힘든 이름으로 생성 권고
+  config:
+    url-count: 10 #기본 10 token용 url 그룹수
+    login-fail-limit: 5 #로그인 실패 횟수 제한
+  cookie:
+    domain: .validator-ai.co.kr
+    secure: true
+    http-only: true
+    same-site: None
+  action: "/adlog" #api 호출 url api는 '/'빼고 대상은 넣고
+  allowed-origins:
+    https://admin.validator-ai.co.kr:8800,
+    https://ad.validator-ai.co.kr:8888

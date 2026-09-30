@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>type1</title>
+    <!-- <script  src="http://code.jquery.com/jquery-latest.min.js"></script> -->
+    <script src="/js/jquery-1.12.3.min.js"></script>
+    <script src="/js/validator.util.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.10.2/underscore-min.js"></script>
+    <script>
+        $(document).ready
+        (
+            function(){
+                $("#btnGo").click
+                (
+                    function()
+                    {
+                        console.log("type1");
+                        // $("#type1").submit();
+                        var form = $('#type1')[0];
+                        let data = new FormData(form);
+                        // let data = new FormData(document.getElementById("type1"));
+                        console.log("form = {}",form);
+                        console.log("data = {} ",data);
+                        // data.append("pidName", pidName);
+                        // data.append("pidDesc", pidDesc);
+                        let url = "/type2_res";
+                        vac.act.logs(data, url);
+
+                    //     vac.ajax.post({
+                    //     url: "http://127.0.0.1:8888/check",
+                    //     // url: "/type1",
+                    //     // method: "POST",
+                    //     processData : false,
+                    //     contentType : false,
+                    //     data : data,
+                    //     success : function(result) {
+                    //         let hash = data.hash;
+                    //         console.log("data = {} ",data);
+                    //         console.log('hash = '+result);
+                    //         vac.ajax.post({
+                    //             url: "/type1_res",
+                    //             processData : false,
+                    //             contentType : false,
+                    //             data : data,
+                    //             beforeSend: function( xhr ) {
+                    //                 xhr.setRequestHeader("code", result);
+                    //             }
+                    //             ,
+                    //             success : function(result) {
+                    //                 let hash = data.hash;
+                    //                 console.log('hash = '+result);
+                    //             },
+                    //             error : function (xhr, status, error) {
+
+                    //                 alert("에러가 발생하였습니다.");
+                    //             }
+                    //         })
+                    //     },
+                    //     error : function (xhr, status, error) {
+
+                    //         alert("에러가 발생하였습니다.");
+                    //     }
+                    // });
+                    }
+                )            }
+        );
+        function link(url){
+        }
+        function vasubmit(){
+            $("#type1").submit();
+        }
+
+    </script>
+</head>
+<body>
+    <form id="type1" action="/type2_res">
+        <input type="text" name="text1">
+        <input type="text" name="text2">
+        <input type="text" name="text3">
+        <input type="button" id="btnGo" value="go">
+    </form> 
+    <a href="javascript:valink('/type1_res?link1=12&link2=33')" id="btnLink">link</a>
+</body>
+</html>

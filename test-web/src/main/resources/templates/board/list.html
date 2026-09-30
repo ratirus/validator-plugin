@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>title</title>
+    <script src="/js/jquery-1.12.3.min.js"></script>
+    <script>
+
+        $(document).ready
+        (
+            function(){
+                $('.list-tr').on('click', function(){
+                    console.log('click-d');
+                    let idx = $(this).find("input[name='idx']").val();
+                    location.href = "/board/detail?idx="+idx;
+                    // _this.detail($(this).find("input[name='idx']").val());
+                });
+
+        list.init();
+            }
+        );
+        let list = {
+            init: function() {
+                let _this = this;
+
+                console.log('init');
+
+                $('.list-tr2').on('click', function(){
+                    console.log('click');
+                    _this.detail($(this).find("input[name='idx']").val());
+                });
+
+                $('table tr').on('click',  function(){
+                    console.log('click2');
+                })
+            },
+            detail : function(idx){
+                console.log('detail');
+                location.href = "/board/detail?boardIdx="+idx;
+            }
+        };
+    </script>
+
+</head>
+<body>
+   <button type="button" onclick="location.href='/boardInsert'" >등록</button> 
+    <div >
+        <input id="search-keyword" type="text" placeholder="제목을 입력해주세요." th:value="${searchParams.searchKeyword}">
+        <button id="btn-search" type="button">
+        검색
+        </button>
+    </div>
+   <table>
+        <thead>
+            <tr>
+                <th>no</th>
+                <th>title</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="list-tr2" th:if="${resource.total > 0}" th:each="list : ${resource.list}">
+                <input type="hidden" name="idx" id="idx" th:value="${list.idx}">
+                <td th:text="${list.idx}"></td>
+                <td th:utext="${list.title}"></td>
+
+            </tr>
+        </tbody>
+   </table>
+   <th:block th:replace="common/pagination.html :: pagination-fragment (pageable = ${resource}, currentPage = ${searchParams.pageNum})"></th:block>
+</body>
+</html>
